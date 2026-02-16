@@ -54,6 +54,10 @@ public class Zlomek {
         int cit = citatel * druhy.getJmenovatel() + druhy.citatel * jmenovatel;
         return new Zlomek(cit, jm);
     }
+    public Zlomek plus(int cislo) { // PŘTÍŽENÁ METODA (overload)
+        int cit = citatel + jmenovatel * cislo;
+        return new Zlomek(cit, jmenovatel);
+    }
 
     /**
      * Metoda pro odčítání dvou zlomků
@@ -93,9 +97,12 @@ public class Zlomek {
         int delitel = nsd(citatel, jmenovatel); // vypocet nejv. spol. delitele
         return new Zlomek(citatel / delitel, jmenovatel / delitel);
     }
-
+    public Zlomek delit(Zlomek pocet){
+        int delitel = nsd(citatel, jmenovatel);
+        return new Zlomek(citatel * delitel, jmenovatel * delitel);
+    }
     @Override
     public String toString() {
-        return String.format("%d\n/\n%d", citatel, jmenovatel); //zarovnání textu
+        return String.format("%d"+"/"+"%d", citatel, jmenovatel); //zarovnání textu
     }
 }
