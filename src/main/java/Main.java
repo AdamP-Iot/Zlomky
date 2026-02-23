@@ -9,6 +9,7 @@ public class Main {
         a.setJmenovatel(2);
         IO.println("Zlomek: " + a.getCitatel() + "/" + a.getJmenovatel());
         Zlomek b = new Zlomek(3, 4);
+        IO.println("Zlomek2: " + b.getCitatel() + "/" + b.getJmenovatel());
         var soucet = a.plus(b);
         IO.println("Soucet je %s".formatted(soucet.zkratit()));
         Zlomek[] pole = new Zlomek[] {
@@ -20,8 +21,9 @@ public class Main {
                     new Zlomek(13, 10)
         };
         Zlomek prumer = prumer(pole);
-        IO.println("Průměr je %s".formatted(soucet.zkratit()));
-
+        IO.println("Průměr je %s".formatted(prumer.zkratit()));
+        int celeCislo = new Zlomek(25,12).intValue();
+        IO.println("Zlomek na celé číslo: %d".formatted(celeCislo));
     }
     private static Zlomek prumer(Zlomek[] pole) {
         var soucet = new Zlomek();

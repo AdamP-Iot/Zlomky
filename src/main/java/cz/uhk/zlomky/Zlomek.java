@@ -1,7 +1,7 @@
 package cz.uhk.zlomky;
 //ctrl + alt + l ==> přeformátování kodu
 
-public class Zlomek {
+    public class Zlomek extends Number { //extend rozšíří třídu
     private int citatel;
     private int jmenovatel;
 
@@ -13,7 +13,27 @@ public class Zlomek {
         jmenovatel = 1;
     }
 
-    /**
+        @Override
+        public int intValue() {
+            return (int)longValue();
+        }
+
+        @Override
+        public long longValue() {
+            return Math.round(citatel / (double)jmenovatel);
+        }
+
+        @Override
+        public float floatValue() {
+            return citatel / (float)jmenovatel;
+        }
+
+        @Override
+        public double doubleValue() {
+            return citatel / (double)jmenovatel;
+        }
+
+        /**
      * Konstruktor
      *
      * @param citatel
@@ -99,7 +119,7 @@ public class Zlomek {
     }
     public Zlomek delit(Zlomek pocet){
         int delitel = nsd(citatel, jmenovatel);
-        return new Zlomek(citatel * delitel, jmenovatel * delitel);
+        return new Zlomek(citatel * pocet.jmenovatel, jmenovatel* pocet.citatel);
     }
     @Override
     public String toString() {
