@@ -1,6 +1,8 @@
 package cz.uhk.util.impl;
 import cz.uhk.util.Seznam;
 
+import java.util.Iterator;
+
 public class SpojovySeznam<E> implements Seznam<E> {
     private PrvekSeznamu<E> prvni,posledni; //instanční neznámý  ==> mají null hodnotu
 
@@ -48,6 +50,23 @@ public class SpojovySeznam<E> implements Seznam<E> {
             pocet++;
         }
         return pocet;
+    }
+
+    @Override //jednoúčelový
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            PrvekSeznamu<E> aktualni = prvni;
+            @Override
+            public boolean hasNext() {
+                return aktualni.dalsi!=null;
+            }
+            //anonymní třída
+            @Override
+            public E next() {
+                aktualni = aktualni.dalsi;
+                return aktualni.hodnota;
+            }
+        };
     }
 }
 //typ prvku ve spoj. seznamu s hodnotou zatim neznámého typu, dostupná classa jen v tomhle balíčku
