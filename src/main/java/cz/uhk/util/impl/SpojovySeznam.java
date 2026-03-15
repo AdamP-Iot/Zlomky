@@ -18,6 +18,22 @@ public class SpojovySeznam<E> implements Seznam<E> {
         }
     }
 
+    public void pridej(E hodnota, int index){
+        if(index == 0){
+            var novy = new PrvekSeznamu<E>(hodnota);
+            novy.dalsi = prvni;
+            prvni = novy;
+            if(posledni == null) posledni = novy;
+        } else {
+            var pom = vratPrvek(index - 1);
+            var novy = new PrvekSeznamu<E>(hodnota);
+            novy.dalsi = pom.dalsi;
+            pom.dalsi = novy;
+            if(novy.dalsi == null) posledni = novy;
+        }
+    }
+    //pridat metodu PRIDEJ(hodnota,index) ala zadavani na index a ne na konec !!!!!!!!!!!!!!!!!!
+
     @Override
     public void smaz(int pozice) {
         if(pozice == 0){
